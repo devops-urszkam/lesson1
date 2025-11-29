@@ -18,7 +18,7 @@ Simple Docker exercise: Ubuntu 22.04 image that installs a basic developer toolc
 
 -   `Dockerfile` – Ubuntu 22.04 base, runs `src/startup-script.sh`, defaults to `CMD ["zsh"]`, build args `GIT_NAME="User"` and `GIT_EMAIL="example@example.com"`. Tests are not baked into the image.
 -   `src/startup-script.sh` – updates apt, installs git/curl/wget/unzip/htop/tree/jq/zsh, installs Oh My Zsh + autosuggestions, sets git aliases/name/email, creates `/workspace/devops-test` directory with `git init`.
--   `tests/tests.sh` – checks git, jq, git config (name/email), zsh/Oh My Zsh, and lists `/workspace/devops-test`; run it from host by mounting `tests/` into the container.
+-   `tests/tests.sh` – checks git, jq, git config (name/email), zsh/Oh My Zsh, and lists `/workspace/devops-test`. Run it from the host by mounting `tests/` into the container.
 
 ## Setup and run
 
@@ -50,6 +50,11 @@ Simple Docker exercise: Ubuntu 22.04 image that installs a basic developer toolc
         ```sh
         docker run --rm -it -v "$PWD/tests":/tests lesson1 /tests/tests.sh
         ```
+
+## CI
+
+-   GitHub Actions (`.github/workflows/ci.yml`) builds the Docker image and runs `tests/tests.sh` in a container for pull requests into `main`.
+-   Direct pushes to `main` are blocked. Open a PR (for example from `dev` to `main`) to trigger CI.
 
 ## Notes
 
