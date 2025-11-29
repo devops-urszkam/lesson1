@@ -16,15 +16,15 @@ Simple Docker exercise: Ubuntu 22.04 image that installs a basic developer toolc
 
 ## Key files
 
--   `Dockerfile` – Ubuntu 22.04 base, runs `src/startup-script.sh`, defaults to `CMD ["zsh"]`, build args `GIT_NAME="User"` and `GIT_EMAIL="example@example.com"`. Tests are not baked into the image.
--   `src/startup-script.sh` – updates apt, installs git/curl/wget/unzip/htop/tree/jq/zsh, installs Oh My Zsh + autosuggestions, sets git aliases/name/email, creates `/workspace/devops-test` directory with `git init`.
--   `tests/tests.sh` – checks git, jq, git config (name/email), zsh/Oh My Zsh, and lists `/workspace/devops-test`. Run it from the host by mounting `tests/` into the container.
+-   `Dockerfile` – Ubuntu 22.04 base, runs `src/startup-script.sh`, defaults to `CMD ["zsh"]`, build args `GIT_NAME="User"` and `GIT_EMAIL="example@example.com"`.
+-   `src/startup-script.sh` – updates apt, installs git/curl/wget/unzip/htop/tree/jq/zsh, installs Oh My Zsh + plugins, sets git aliases/name/email, creates `/workspace/devops-test` directory with `git init`.
+-   `tests/tests.sh` – checks git, jq, git config (name/email), zsh/Oh My Zsh, and lists `/workspace/devops-test`.
 
 ## Setup and run
 
 1. Clone the repository:
     ```sh
-    git clone <repo-url>
+    git clone git@github.com:devops-urszkam/lesson1.git
     cd lesson1
     ```
 2. Prerequisites on the host (Debian):
